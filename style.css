@@ -1,0 +1,135 @@
+/* style.css - SKSingh Typing App
+   Clean, responsive modern layout with animated transitions */
+
+/* Basic resets */
+:root{
+  --bg:#f6f8fb;
+  --card:#ffffff;
+  --accent:#4b7bec;
+  --muted:#6b7280;
+  --success:#16a34a;
+  --danger:#ef4444;
+  --glass: rgba(255,255,255,0.7);
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+*{box-sizing:border-box}
+html,body,#app{height:100%}
+body{
+  margin:0;
+  font-family:var(--font-sans);
+  background:linear-gradient(180deg,var(--bg),#eaf0ff);
+  color:#111827;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  transition:background .3s ease,color .2s ease;
+}
+
+/* Themes */
+.theme-dark{ --bg:#0f1724; --card:#0b1220; --accent:#60a5fa; --muted:#94a3b8; color:#e6eef8; }
+.theme-neon{ --bg:#001f2f; --card:#021428; --accent:#39ff14; --muted:#9be7a2; color:#eaffea; }
+
+/* Contrast adjustments */
+body[data-contrast="high"]{ filter:contrast(1.15) saturate(1.05); }
+
+/* Font sizes */
+body[data-font="small"]{ font-size:14px }
+body[data-font="medium"]{ font-size:16px }
+body[data-font="large"]{ font-size:18px }
+
+/* Layout */
+.screen{ padding:20px; display:none; min-height:100vh; }
+.screen.active{ display:block; animation:fadeIn .35s ease both; }
+.app-header{ text-align:center; margin-bottom:18px }
+.app-header h1{ margin:0; font-size:1.7rem; letter-spacing:0.6px }
+.meta{ color:var(--muted); font-size:0.9rem }
+
+/* Home */
+.home-actions{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:20px 0; }
+.btn{ background:var(--card); border:1px solid rgba(0,0,0,0.06); padding:10px 14px; border-radius:8px; cursor:pointer; box-shadow:0 2px 6px rgba(0,0,0,0.05); transition:transform .12s ease, box-shadow .12s; }
+.btn:hover{ transform:translateY(-3px); box-shadow:0 6px 20px rgba(0,0,0,0.08); }
+.btn.primary{ background:linear-gradient(90deg,var(--accent), #6ea8fe); color:white; border:none; }
+.btn.danger{ background:var(--danger); color:#fff; border:none }
+.btn[disabled]{ opacity:.5; cursor:not-allowed }
+
+/* Quick stats */
+.quick-stats{ display:flex; gap:10px; justify-content:center; margin-top:12px }
+.stat{ background:var(--card); padding:12px; min-width:100px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.04) }
+.stat .label{ color:var(--muted); font-size:0.85rem }
+.stat .value{ font-weight:700; font-size:1.2rem }
+
+/* Screen header with back */
+.screen-header{ display:flex; align-items:center; gap:12px; margin-bottom:12px }
+.screen-header h2{ margin:0; flex:1; font-size:1.2rem; text-align:center }
+.nav-back{ background:none; border:none; font-weight:600; cursor:pointer }
+
+/* Practice layout */
+.practice-inside{ display:grid; grid-template-columns:260px 1fr 320px; gap:12px; align-items:start; }
+@media(max-width:1000px){ .practice-inside{ grid-template-columns:1fr; } .right-pane{ order:3 } .left-pane{ order:2 } .center-pane{ order:1 } }
+
+.left-pane, .right-pane{ background:var(--card); padding:12px; border-radius:10px; box-shadow:0 6px 18px rgba(10,10,10,0.04) }
+.center-pane{ display:flex; flex-direction:column; gap:10px }
+
+/* Exercise box */
+.exercise-box{ min-height:160px; border-radius:10px; padding:14px; background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4)); border:1px solid rgba(0,0,0,0.04); overflow:auto; outline:none }
+.sample-text{ font-size:1.1rem; line-height:1.6; color:var(--muted) }
+.user-progress .correct{ color:var(--success) }
+.user-progress .incorrect{ color:var(--danger); text-decoration:underline; }
+
+/* Controls row */
+.controls-row{ display:flex; gap:10px }
+
+/* Keyboard */
+.keyboard-wrap{ margin-top:12px }
+.keyboard{ display:grid; gap:6px; user-select:none; }
+.key-row{ display:flex; gap:6px }
+.key{ min-width:32px; padding:8px 10px; border-radius:6px; text-align:center; background:rgba(255,255,255,0.06); border:1px solid rgba(0,0,0,0.04); box-shadow:0 2px 6px rgba(0,0,0,0.03) }
+.key.active{ transform:translateY(-4px); box-shadow:0 8px 22px rgba(0,0,0,0.12); }
+.finger-legend{ display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:10px; color:var(--muted) }
+.finger{ display:inline-block; width:18px; height:12px; border-radius:3px; margin-right:6px; vertical-align:middle }
+
+/* finger colors */
+.finger.left-pinkie{ background:#f97316 } /* orange */
+.finger.left-ring{ background:#fb923c }
+.finger.left-middle{ background:#f59e0b }
+.finger.left-index{ background:#60a5fa }
+.finger.right-index{ background:#34d399 }
+.finger.right-middle{ background:#7c3aed }
+.finger.right-ring{ background:#ef4444 }
+.finger.right-pinkie{ background:#ec4899 }
+
+/* Levels grid */
+.levels-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:10px; padding:10px }
+.level-card{ background:var(--card); padding:12px; border-radius:10px; box-shadow:0 4px 16px rgba(0,0,0,0.04); cursor:pointer }
+.level-card.locked{ opacity:.45 }
+
+/* Games */
+.games-list{ display:flex; gap:8px; flex-wrap:wrap; padding:10px }
+.game-card{ padding:12px; border-radius:8px; background:var(--card); cursor:pointer }
+
+/* Game area */
+.game-area{ margin-top:12px; min-height:220px; background:linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0.2)); border-radius:10px; padding:8px }
+
+/* scoreboard */
+.scoreboard{ margin-top:10px }
+
+/* Settings grid */
+.settings-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; padding:12px }
+
+/* Tiny helpers */
+.progress-bar{ height:10px; background:rgba(0,0,0,0.06); border-radius:8px; overflow:hidden; margin:6px 0 }
+.progress-bar .fill{ height:100%; background:linear-gradient(90deg,var(--accent), #6ea8fe); width:0%; transition:width .5s ease }
+.stat-row{ display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px dashed rgba(0,0,0,0.03) }
+.hints-area ul{ margin:6px 0 0 18px; color:var(--muted) }
+
+/* Animations */
+@keyframes fadeIn{ from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:none} }
+
+/* Tooltips basic */
+button[title]{ position:relative }
+button[title]:hover::after{ content:attr(title); position:absolute; left:50%; transform:translateX(-50%); bottom:calc(100% + 8px); padding:6px 8px; font-size:12px; background:var(--card); border-radius:6px; box-shadow:0 8px 20px rgba(0,0,0,0.12); white-space:nowrap }
+
+/* responsive */
+@media(max-width:700px){
+  .home-actions{ gap:8px; }
+  .keyboard{ display:none }
+}
